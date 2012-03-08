@@ -198,13 +198,14 @@ This does NOT save a pointer to the super-function of all functions (unlike the 
 
 ### 3. Class.extends() like John Resig, Base.js, Prototype.js
 
-There are many slight variations on this approach, but they all come down to the same thing. You call Class.create() or Class.extend() and pass it in an object that defines that class. You can then use some form of $super to access the superclass's equivalent method and call it.
+There are many slight variations on this approach, but they all come down to the same thing. You call Class.create() or Class.extend() and pass it in an object that defines that class. You can then use some form of $super to access the superclass's equivalent method and call it. 
 
 See: 
 
 * [http://ejohn.org/blog/simple-javascript-inheritance/](http://ejohn.org/blog/simple-javascript-inheritance/)
 * [http://dean.edwards.name/weblog/2006/03/base/](http://dean.edwards.name/weblog/2006/03/base/)
 * [http://www.prototypejs.org/api/class/create](http://www.prototypejs.org/api/class/create)
+* [http://code.google.com/p/inheritance/](http://code.google.com/p/inheritance/)
 
 *PROS:*
 
