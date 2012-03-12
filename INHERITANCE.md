@@ -110,6 +110,10 @@ How do we deal with these cons? There are some answers:
 
 *Factory function*: Forget about constructors, just create a function that initializes the object. This is not unreasonable.
 
+#### New in ECMAScript 3.1: Object.getPrototypeOf()
+
+Apparently I'm not the only person annoyed by `instanceof` breaking when you use prototypal inheritance. You can now call `getPrototypeOf()` on any object, and get the prototype. You can now write an interative method that traverses the actual `[[Prototype]]` chain to check whether one object is an instance of another object. Still messy and ugly (given that it's not baked into the language) but a whole lot better than what we currently have.
+
 *CODE:*
 
     Object.create = function(o) {
