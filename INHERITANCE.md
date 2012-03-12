@@ -102,7 +102,7 @@ Just use object.create() the way [http://javascript.crockford.com/prototypal.htm
 - instanceof now no longer does shit for you
 - you have two ways of making objects (literals, and create())
 - you don't have constructors thats called on create
-- there is no way to call or know anything about the parent (except if you use the not recommended `.__proto__`)
+- there is no way to call or know anything about the parent (except if you use the not recommended `.__proto__`. Although you can now use `.getPrototypeOf()` so if you're on ECMAScript3.1 or later that's fine)
 
 How do we deal with these cons? There are some answers:
 
