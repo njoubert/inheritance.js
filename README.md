@@ -12,6 +12,23 @@ There is a tension between creating scopes to hold private variables,
 having constructor functions to instantiate objects but having functions
  on the prototype of these constructor functions to avoid duplication.
 
+## Issues with this approach
+
+Unfortunately every pseudoclass in my system has "SubClass" as a constructor, 
+thus something like FireBug or Chrome Developer Tools look a little ugly
+when you're printing things out.
+
+## Fundamental reasons why I want something like this.
+
+What makes this process difficult is: I want to distinguish between internal
+library functionality and an external API. This is why thing like public-private
+are useful. The Revealing Module pattern is a nice way of achieving this for
+Modules, but for Classes there seems to be no equivalent.
+
+The difference is: for Classes you do not want to duplicate code on every instance,
+while for Modules this is not an issue, since you tend to only instantiate one copy
+of each module,
+
 ## Understanding Javascript Inheritance
 
 See `inheritance.md` for an overview of javascript inheritance.
