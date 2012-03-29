@@ -29,6 +29,9 @@ The difference is: for Classes you do not want to duplicate code on every instan
 while for Modules this is not an issue, since you tend to only instantiate one copy
 of each module,
 
+I like my approach slightly more than prototype.js (Alex Arnell)'s implementation,
+since I don't need a `super()` method everywhere.
+
 ## Understanding Javascript Inheritance
 
 See `inheritance.md` for an overview of javascript inheritance.

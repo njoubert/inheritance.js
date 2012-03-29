@@ -34,7 +34,7 @@
  (function(global) {
 
 var Base = function(){};
-Base.extend = function(prop) {
+Base.extend = function(prop, className) {
   initializing = true;
   var prototype = new this();
   initializing = false;
@@ -45,16 +45,34 @@ Base.extend = function(prop) {
     }
   }
   
-  function SubClass() {
-    if (!initializing && prototype.init) {
-        prototype.init.apply(this,arguments)
+  
+  if (className !== undefined) {
+    
+    eval("function " + className + "() { \
+      if (!initializing && prototype.init) { \
+        prototype.init.apply(this,arguments); \
+      } \
+    };"
+    + className + ".prototype = prototype;"
+    + className + ".prototype.constructor = SubClass;"
+    + className + ".prototype.parent = this.prototype;"
+    + className + ".extend = arguments.callee;");
+    return eval(className);
+    
+  } else {
+    
+    function SubClass() {
+      if (!initializing && prototype.init) {
+          prototype.init.apply(this,arguments)
+      }
     }
+    SubClass.prototype = prototype;
+    SubClass.prototype.constructor = SubClass;
+    SubClass.prototype.parent = this.prototype;
+    SubClass.extend = arguments.callee
+    return SubClass;
+  
   }
-  SubClass.prototype = prototype;
-  SubClass.prototype.constructor = SubClass;
-  SubClass.prototype.parent = this.prototype;
-  SubClass.extend = arguments.callee
-  return SubClass;
 }
 
 if (global.Base) {
