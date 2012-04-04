@@ -12,6 +12,10 @@ There is a tension between creating scopes to hold private variables,
 having constructor functions to instantiate objects but having functions
  on the prototype of these constructor functions to avoid duplication.
 
+## Dependencies
+
+- require.js (optional)
+
 ## Issues with this approach
 
 Unfortunately every pseudoclass in my system has "SubClass" as a constructor, 
