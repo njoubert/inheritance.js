@@ -31,54 +31,65 @@
  *  on the prototype of these constructor functions to avoid duplication.
  */
 
- (function(global) {
-
-var Base = function(){};
-Base.extend = function(prop, className) {
-  initializing = true;
-  var prototype = new this();
-  initializing = false;
-  
-  for (var name in prop) {
-    if (prop.hasOwnProperty(name)) {
-      prototype[name] = prop[name];
-    }
+//graceful degredation if require.js is not available.
+//in that case, we just define window.Base
+if (define === undefined || define === null) {
+  define = function(obj) {
+    (function(global) {
+      if (global.Base) {
+        throw new Error("inheritance.js: Base has already been defined.")
+      } else {
+        global.Base = obj;
+      }      
+    })(window);
   }
-  
-  
-  if (className !== undefined) {
-    
-    eval("function " + className + "() { \
-      if (!initializing && prototype.init) { \
-        prototype.init.apply(this,arguments); \
-      } \
-    };"
-    + className + ".prototype = prototype;"
-    + className + ".prototype.constructor = SubClass;"
-    + className + ".prototype.parent = this.prototype;"
-    + className + ".extend = arguments.callee;");
-    return eval(className);
-    
-  } else {
-    
-    function SubClass() {
-      if (!initializing && prototype.init) {
-          prototype.init.apply(this,arguments)
+}
+
+//Inheritance.js
+define(function () {
+
+  var Base = function(){};
+  Base.extend = function(prop, className) {
+    initializing = true;
+    var prototype = new this();
+    initializing = false;
+
+    for (var name in prop) {
+      if (prop.hasOwnProperty(name)) {
+        prototype[name] = prop[name];
       }
     }
-    SubClass.prototype = prototype;
-    SubClass.prototype.constructor = SubClass;
-    SubClass.prototype.parent = this.prototype;
-    SubClass.extend = arguments.callee
-    return SubClass;
+
+
+    if (className !== undefined) {
+
+      eval("function " + className + "() { \
+        if (!initializing && prototype.init) { \
+          prototype.init.apply(this,arguments); \
+        } \
+      };"
+      + className + ".prototype = prototype;"
+      + className + ".prototype.constructor = SubClass;"
+      + className + ".prototype.parent = this.prototype;"
+      + className + ".extend = arguments.callee;");
+      return eval(className);
+
+    } else {
+
+      function SubClass() {
+        if (!initializing && prototype.init) {
+            prototype.init.apply(this,arguments)
+        }
+      }
+      SubClass.prototype = prototype;
+      SubClass.prototype.constructor = SubClass;
+      SubClass.prototype.parent = this.prototype;
+      SubClass.extend = arguments.callee
+      return SubClass;
+
+    }
+  }  
   
-  }
-}
-
-if (global.Base) {
-  throw new Error("inheritance.js: Base has already been defined.")
-} else {
-  global.Base = Base;
-}
-
-})(window);
+  return Base;
+  
+})
