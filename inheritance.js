@@ -64,6 +64,9 @@ define(function () {
     if (className !== undefined) {
 
       eval("function " + className + "() { \
+        if (!(this instanceof arguments.callee)) { \
+          return new arguments.callee(); \
+        } \
         if (!initializing && prototype.init) { \
           prototype.init.apply(this,arguments); \
         } \
@@ -77,6 +80,9 @@ define(function () {
     } else {
 
       function SubClass() {
+        if (!(this instanceof arguments.callee)) {
+          return new arguments.callee();
+        }
         if (!initializing && prototype.init) {
             prototype.init.apply(this,arguments)
         }
