@@ -11,9 +11,13 @@
 
   <script type="text/javascript">
 
+  require.config({
+      urlArgs: "bust=" + (new Date()).getTime()
+  });
+
 	require(
 		
-		['coretests.js', 'lib/jasmine-1.2.0.rc3/jasmine.js', 'lib/jasmine-1.2.0.rc3/jasmine-html.js'],
+		['order!coretests.js', 'order!lib/jasmine-1.2.0.rc3/jasmine.js', 'order!lib/jasmine-1.2.0.rc3/jasmine-html.js'],
 		
 		function() {
 			
