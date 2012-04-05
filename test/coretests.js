@@ -47,7 +47,21 @@ define(
     });
     
     describe("Mammal", function() {
+
+      var myMammal;
+
+      beforeEach(function() {
+        myMammal = new Mammal("Job");
+      });
       
+      it("should be a constructor function", function() {
+        expect(typeof Mammal === "function").toBeTruthy();
+      });
+
+      it("not using a constructor should still work", function() {
+        var didntUseNew = Mammal();
+        expect(typeof didntUseNew === "object").toBeTruthy();
+      });
       
     });
     
