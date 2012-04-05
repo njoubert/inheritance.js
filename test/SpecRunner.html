@@ -12,7 +12,8 @@
   <script type="text/javascript">
 
   require.config({
-      urlArgs: "bust=" + (new Date()).getTime()
+	//This will bust the cache for us.
+	urlArgs: "bust=" + (new Date()).getTime()
   });
 
 	require(
