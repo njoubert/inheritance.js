@@ -80,6 +80,7 @@ define(function () {
     } else {
 
       function SubClass() {
+        //Inspired by John Resig's Secrets of the Javascript Ninja.
         if (!(this instanceof arguments.callee)) {
           return new arguments.callee();
         }
