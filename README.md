@@ -1,4 +1,4 @@
-# INHERITANCE.JS
+# BASECLASS.JS
 
 *A simple base class for your javascript needs.*
 
