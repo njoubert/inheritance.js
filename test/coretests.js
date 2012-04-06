@@ -3,17 +3,17 @@ define(
   
   //Here we list the modules this test depends on.
   //We are testing the inheritance library...
-  ['order!../BaseClass', 'order!lib/jasmine-1.2.0.rc3/jasmine.js', 'order!lib/jasmine-1.2.0.rc3/jasmine-html.js'],
+  ['order!../Class', 'order!lib/jasmine-1.2.0.rc3/jasmine.js', 'order!lib/jasmine-1.2.0.rc3/jasmine-html.js'],
   
   //Here we code the actual Jasmine tests,
   //with the library passed in.
-  function(BaseClass) {
+  function(Class) {
     
-    window.BaseClass = BaseClass;
+    window.Class = Class;
 
 
     //Test classes
-    var Mammal = BaseClass.extend({
+    var Mammal = Class.extend({
       init: function(name) {
         this.name = name;
       }
@@ -31,18 +31,18 @@ define(
 
 
     //Tests
-    describe("BaseClass", function() {
+    describe("Class", function() {
       
       it("should have extend function", function() {
-        expect(typeof BaseClass.extend === "function").toBeTruthy();
+        expect(typeof Class.extend === "function").toBeTruthy();
       });
       
       it("should take 2 arguments", function() {
-        expect(BaseClass.extend.length === 2).toBeTruthy();
+        expect(Class.extend.length === 2).toBeTruthy();
       })
 
       it("should accept having just 1 argument", function() {
-        expect( function() {BaseClass.extend({})} ).not.toThrow(new Error("Illegal arguments"));
+        expect( function() {Class.extend({})} ).not.toThrow(new Error("Illegal arguments"));
       })
       
     });
@@ -73,8 +73,8 @@ define(
         expect(myMammal instanceof Mammal).toBeTruthy();
       });
       
-      it("should be an instance of BaseClass", function() {
-        expect(myMammal instanceof BaseClass).toBeTruthy();
+      it("should be an instance of Class", function() {
+        expect(myMammal instanceof Class).toBeTruthy();
       });
       
       it("should not be an instance of Snake", function() {
@@ -126,8 +126,8 @@ define(
         expect(mySnake instanceof Mammal).toBeTruthy();
       });
       
-      it("should be an instance of BaseClass", function() {
-        expect(mySnake instanceof BaseClass).toBeTruthy();
+      it("should be an instance of Class", function() {
+        expect(mySnake instanceof Class).toBeTruthy();
       });
       
       it("should be an instance of Snake", function() {

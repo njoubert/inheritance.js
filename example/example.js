@@ -1,10 +1,10 @@
-require(["../inheritance"], function(BaseClass) {
+require(["../Class"], function(Class) {
   
 /*
  * You can call extend to create a new constructor
  */
 
-  var Mammal = BaseClass.extend({
+  var Mammal = Class.extend({
     //you hand it an object with properties you want on the prototype
     //of any objects created using this constructor
     init: function(name) {
