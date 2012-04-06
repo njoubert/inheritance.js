@@ -1,4 +1,4 @@
-# BASECLASS.JS
+# CLASS.JS
 
 *A simple base class for your javascript needs.*
 
