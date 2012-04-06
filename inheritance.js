@@ -29,7 +29,9 @@
  *  to access these variables, and
  * having constructor functions to instantiate objects but having functions
  *  on the prototype of these constructor functions to avoid duplication.
+ *
  */
+
 
 //graceful degredation if require.js is not available.
 //in that case, we just define window.Base
@@ -46,6 +48,7 @@ if (define === undefined || define === null) {
 }
 
 //Inheritance.js
+//Main module definition
 define(function () {
 
   var Base = function(){};
