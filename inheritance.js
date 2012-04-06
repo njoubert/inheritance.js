@@ -20,6 +20,7 @@
 */
 
  /*
+ **************************************************************************
  * This class inheritance structure gives up private variables,
  * since you cannot return an object from your constructor and
  * have the hierarchy still work.
@@ -29,7 +30,7 @@
  *  to access these variables, and
  * having constructor functions to instantiate objects but having functions
  *  on the prototype of these constructor functions to avoid duplication.
- *
+ **************************************************************************
  */
 
 
