@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Inheritance.js by njoubert</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Inheritance.js</h1>
+<p>A simple inheritance library for you pseudoclassical needs</p>
+        <p class="view"><a href="https://github.com/njoubert/inheritance.js">View the Project on GitHub <small>njoubert/inheritance.js</small></a></p>
+        <ul>
+          <li><a href="https://github.com/njoubert/inheritance.js/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/njoubert/inheritance.js/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/njoubert/inheritance.js">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>INHERITANCE.JS</h1>
+
+<p><em>A simple base class for your javascript needs.</em></p>
+
+<p>This class inheritance structure gives up private variables,
+since you cannot return an object from your constructor and
+have the hierarchy still work.</p>
+
+<p>There is a tension between creating scopes to hold private variables,
+ which necessitates that all the functions also be created in this scope
+ to access these variables, and
+having constructor functions to instantiate objects but having functions
+ on the prototype of these constructor functions to avoid duplication.</p>
+
+<h2>Dependencies</h2>
+
+<ul>
+<li>require.js (optional)</li>
+</ul><h2>Issues with this approach</h2>
+
+<p>Unfortunately every pseudoclass in my system has "SubClass" as a constructor, 
+thus something like FireBug or Chrome Developer Tools look a little ugly
+when you're printing things out.</p>
+
+<p>This is fixed by passing a string argument with the name you want, but that's not very DRY, so i'm not a huge fan.</p>
+
+<h2>Fundamental reasons why I want something like this.</h2>
+
+<p>What makes this process difficult is: I want to distinguish between internal
+library functionality and an external API. This is why thing like public-private
+are useful. The Revealing Module pattern is a nice way of achieving this for
+Modules, but for Classes there seems to be no equivalent.</p>
+
+<p>The difference is: for Classes you do not want to duplicate code on every instance,
+while for Modules this is not an issue, since you tend to only instantiate one copy
+of each module,</p>
+
+<p>I like my approach slightly more than prototype.js (Alex Arnell)'s implementation,
+since I don't need a <code>super()</code> method everywhere.</p>
+
+<h2>Understanding Javascript Inheritance</h2>
+
+<p>See <code>inheritance.md</code> for an overview of javascript inheritance.</p>
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/njoubert">njoubert</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+  </body>
+</html>
