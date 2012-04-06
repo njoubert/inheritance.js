@@ -65,9 +65,12 @@ define(function () {
 
       eval("function " + className + "() { \
         if (!(this instanceof arguments.callee)) { \
-          return new arguments.callee(); \
+          throw { name: \"ClassError\", message: \"Called constructor without using 'new'.\"} \
         } \
         if (!initializing && prototype.init) { \
+          if (arguments.length !== prototype.init.length) { \
+            throw { name: \"ClassError\",  message: \"Called constructor with incorrect number of arguments.\" } \
+          } \
           prototype.init.apply(this,arguments); \
         } \
       };"
@@ -82,10 +85,13 @@ define(function () {
       function SubClass() {
         //Inspired by John Resig's Secrets of the Javascript Ninja.
         if (!(this instanceof arguments.callee)) {
-          return new arguments.callee();
+          throw { name: "ClassError", message: "Called constructor without using 'new'."}
         }
         if (!initializing && prototype.init) {
-            prototype.init.apply(this,arguments)
+          if (arguments.length !== prototype.init.length) {
+            throw { name: "ClassError",  message: "Called constructor with incorrect number of arguments." }
+          }
+          prototype.init.apply(this,arguments)
         }
       }
       SubClass.prototype = prototype;
