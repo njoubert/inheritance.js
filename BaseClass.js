@@ -1,5 +1,5 @@
 /*
-  INHERITANCE.JS
+  BASECLASS.JS
   A simple base class for your javascript needs.
   
      Copyright Niels Joubert, njoubert.com, njoubert@gmail.com
@@ -35,14 +35,14 @@
 
 
 //graceful degredation if require.js is not available.
-//in that case, we just define window.Base
+//in that case, we just define window.BaseClass
 if (define === undefined || define === null) {
   define = function(obj) {
     (function(global) {
-      if (global.Base) {
+      if (global.BaseClass) {
         throw new Error("inheritance.js: Base has already been defined.")
       } else {
-        global.Base = obj;
+        global.BaseClass = obj;
       }      
     })(window);
   }
@@ -52,8 +52,8 @@ if (define === undefined || define === null) {
 //Main module definition
 define(function () {
 
-  var Base = function(){};
-  Base.extend = function(prop, className) {
+  var BaseClass = function(){};
+  BaseClass.extend = function(prop, className) {
     initializing = true;
     var prototype = new this();
     initializing = false;
@@ -107,6 +107,6 @@ define(function () {
     }
   }  
   
-  return Base;
+  return BaseClass;
   
 })
