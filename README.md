@@ -22,6 +22,8 @@ Unfortunately every pseudoclass in my system has "SubClass" as a constructor,
 thus something like FireBug or Chrome Developer Tools look a little ugly
 when you're printing things out.
 
+This is fixed by passing a string argument with the name you want, but that's not very DRY, so i'm not a huge fan.
+
 ## Fundamental reasons why I want something like this.
 
 What makes this process difficult is: I want to distinguish between internal
