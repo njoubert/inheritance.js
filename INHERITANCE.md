@@ -21,7 +21,7 @@ My best advice is to turn around now and run for the hills. Barring that, choose
 
   - `[[Code]]` which points to the actual javascript code of the function.
 
-  - `.prototype` which points to an 
+  - `.prototype` which points to an (empty by default) object.
 
 3. When you type `Object` in your code, you get a Function which is a constructor for Objects, NOT an "object"
 
