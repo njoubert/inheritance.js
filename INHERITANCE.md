@@ -454,9 +454,3 @@ INHERITANCE IMPLEMENTATION:
 I haven't looked in detail at this one yet, but clearly it's a player:
 
 [https://developers.google.com/closure/library/](https://developers.google.com/closure/library/)
-
-<style>
-pre, code {
-    color: red;
-}
-</style>
