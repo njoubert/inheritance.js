@@ -149,3 +149,7 @@ a {
 	font-size: 13px;
 	
 }
+
+#ex2 .CodeMirror-scroll {
+	height: 400px;
+}

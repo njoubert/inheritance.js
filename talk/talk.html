@@ -18,10 +18,12 @@ function log(str) {
   currentStr += (str + "<br/>");
 }
 
-function run(codeEditor, outputDiv) {
+function run(codeEditor, outputDiv, config) {
   currentStr = "";
   div = document.getElementById(outputDiv);
-  code = codeEditor.getValue();
+  var code = "";
+  if (config.prelude) code = config.prelude;
+  code += codeEditor.getValue();
   try {
     eval(code);
   } catch (err) {
@@ -44,6 +46,35 @@ $(document).ready(function(){
     displayMode: "single"
 	});
 });
+
+currEx = 0;
+function createEditor(config) {
+  currEx += 1;
+  var cE = currEx;
+  var div = document.getElementById(config.div);
+  div.innerHTML = '<div id="ex'+cE+'_code" class="js_code"></div> \
+      <input type="button" id="ex'+cE+'_run" value="run!"> \
+      <input type="button" id="ex'+cE+'_clear" value="reset"> \
+      <div id="ex'+cE+'_result" class="js_result"><br/></div>'
+      
+    var ex1_editor = CodeMirror(document.getElementById('ex'+cE+'_code'), {
+      value: config.value,
+      mode:  "javascript",
+      lineNumbers: true
+    });
+    $('#ex'+cE+'_code').bind("keypress", function(e) {
+      if (e.keyCode == 18 && e.ctrlKey) {
+        run(ex1_editor, 'ex'+cE+'_result', config);
+      }
+    });
+    $('#ex'+cE+'_run').click(function() {
+      run(ex1_editor, 'ex'+cE+'_result', config);
+    })
+    $('#ex'+cE+'_clear').click(function() {
+      clear('ex'+cE+'_result');
+    })
+ 
+}
 </script>
 </head>
 <body>
@@ -70,33 +101,31 @@ $(document).ready(function(){
 		</ul>
 		* Totally unsubstantiated claim.
 	</div>
+	
 	<div class="slide">
-		<h1>Example Code</h1>
-		
+		<h1>Example Code</h1>	
 		<ul>
-      <div id="ex1_code" class="js_code"></div>
-      <input type="button" id="ex1_run" value="run!">
-      <input type="button" id="ex1_clear" value="reset">
-      <div id="ex1_result" class="js_result"><br/></div>
+		  <div id="ex1">
+		  </div>
+      
 		</ul>
-<script>
-	  var ex1_editor = CodeMirror(document.getElementById("ex1_code"), {
-      value: "function helloWorld() {\n  log('Hello World!');\n}\nhelloWorld();",
-      mode:  "javascript",
-      lineNumbers: true
-    });
-    $("#ex1_code").bind("keypress", function(e) {
-      if (e.keyCode == 18 && e.ctrlKey) {
-        run(ex1_editor, "ex1_result");
-      }
-    });
-    $('#ex1_run').click(function() {
-      run(ex1_editor, "ex1_result");
+    <script>
+    createEditor({
+      value: "var obj = {}\nlog(typeof obj);\n//log(obj.constructor);\n//log(obj.__proto__);",
+      div: "ex1"
     })
-    $('#ex1_clear').click(function() {
-      clear("ex1_result");
-    })
+	  </script>
+	</div>
 
+	<div class="slide">
+		<h1>Example Code</h1>	
+		  <div id="ex2">
+		  </div>
+    <script>
+    createEditor({
+      value: "function helloWorld() {\n  log('Hello World!');\n}\nhelloWorld();",
+      div: "ex2"
+    })
 	  </script>
 	</div>
 
