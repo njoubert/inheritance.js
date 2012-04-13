@@ -123,6 +123,14 @@ function createEditor(config) {
 
 
 	<div class="slide bb">
+    <div class="centered">
+    <h1>
+      So I've been slinging JavaScript
+	  </h1>
+	  </div>
+	</div>
+
+	<div class="slide bb">
     <ul>
     <li class="big">"JavaScript is an amalgam of good parts and bad parts. Its best parts came from Self (prototypes) and Scheme (lexically scoped nested functions). But the interaction of those two very good parts produced some very bad parts." <br/><br/>-Douglas Crockford</li>
 	  </ul>
@@ -221,10 +229,10 @@ log(\"Map is a Function? \" + (map instanceof Function));\n\
 log(\"Map is an object? \" + (map instanceof Object));\n\
 \n\
 //var count = 0;\n\
-var newarr = map(\n\
-  [1,2,3],\n\
-  function(v) { return v + 1; });\n\
-log(\"Mapped array: \" + newarr);\n\
+//var newarr = map(\n\
+//  [1,2,3],\n\
+//  function(v) { return v + 1; });\n\
+//log(\"Mapped array: \" + newarr);\n\
 //log(\"Elements counted: \" + count);",
       div: "ex3",
       height: "300px"
@@ -237,7 +245,7 @@ log(\"Mapped array: \" + newarr);\n\
 	<div class="slide">
 		<h1>Functions and Objects</h1>	
 		<ul>
-      <li>Objects are dictionaries, functions are first class...<br/>Objects make great modules!</li>
+      <li>Objects are dictionaries, functions are first class...<br/>Objects make great modules!<br/>From <a href="http://documentcloud.github.com/underscore/">underscore.js</a>:</li>
 		</ul>
 		  <div id="ex4"></div>
 
@@ -253,8 +261,8 @@ var count = 0;\n\
 var newarr = _.map(\n\
   [1,2,3],\n\
   function(v) { count +=1; return v + 1; });\n\
-log(\"Elements counted: \" + count);\n\
-log(\"Mapped array: \" + newarr);",
+log(\"Mapped array: \" + newarr);\n\
+log(\"Elements counted: \" + count);",
       div: "ex4",
       height: "220px"
     })
