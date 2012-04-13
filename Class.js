@@ -35,12 +35,12 @@
 //graceful degredation if require.js is not available.
 //in that case, we just define window.Class
 if (define === undefined || define === null) {
-  define = function(obj) {
+  var define = function(obj) {
     (function(global) {
       if (global.Class) {
         throw new Error("inheritance.js: Class has already been defined.")
       } else {
-        global.Class = obj;
+        global.Class = obj();
       }      
     })(window);
   }
@@ -106,4 +106,4 @@ define(function () {
   
   return Class;
   
-})
+});
