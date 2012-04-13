@@ -30,11 +30,11 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
-	background: #000;
+	background: rgb(40,45,49);
 	font-family: 'HelveticaNeue-CondensedBold', helvetica, trebuchet ms, serif;
 
 }
-ol, ul {
+ul {
 	list-style: none;
 }
 blockquote, q {
@@ -55,7 +55,7 @@ input:focus {
 }
 
 div.slide {
-	box-shadow: 0 0 50px #c0c0c0;
+	box-shadow: 0 0 10px #c0c0c0;
 	border-radius: 20px;
 	height: 700px;
 	padding: 20px;
@@ -64,10 +64,15 @@ div.slide {
 	background: #FFF;
 }
 div.bb {
-	box-shadow: 0 0 50px #555;
-
+	box-shadow: 0 0 10px #555;
+	color: white;
 	background: #000;
 }
+
+.bb ul li {
+	color: white;
+}
+
 /*div.inactiveslide {
 	opacity: 0.4;
 }
@@ -112,10 +117,11 @@ h2 {
 	margin-bottom: 14px;
 	margin-top: 10px;
 	text-align: center;
+	line-height: 1.5em;
 }
 
 ul {
-	padding: 60px;
+	padding: 20px 60px 10px 60px;
 }
 
 ul li {
@@ -127,29 +133,51 @@ ul li {
 	text-align: left;
 }
 
+code, pre {
+	font-family: monospace;
+}
+ul.small li {
+	font-size: 18pt;
+	line-height: 1.2em;
+}
+
+.big {
+	font-size: 32pt;
+	line-height: 1.5;
+}
+
 a {
 	color: #75B143;
 }
 
+ul li ol {
+	padding-left: 45px;
+	border-left: 1px solid black;
+}
 /* 
 
 
 
 */
 
+.code_example {
+	padding-bottom: 20px;
+}
 .js_code {
+	font-size: 16px;
 	border: 1px solid #aaa;
 	margin-bottom: 5px;
+	height: 300px;
 }
 
 .js_result {
 	margin-top: 5px;
 	border: 1px solid #aaa;
 	font-family: monospace;
-	font-size: 13px;
+	font-size: 16px;
 	
 }
 
-#ex2 .CodeMirror-scroll {
-	height: 400px;
+#ex2 {
+
 }

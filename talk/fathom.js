@@ -27,8 +27,8 @@
 			activeClass: 'activeslide',
 			inactiveClass: 'inactiveslide',
 			margin: 100,
-			onScrollInterval: 300,
-			scrollLength: 600,
+			onScrollInterval: 200,
+			scrollLength: 200,
 			easing: 'swing',
 			
 			timeline: undefined,
@@ -211,7 +211,7 @@
 				verticalSpacing = Math.ceil(($container.height() - this.$firstSlide.innerHeight()) / 2),
 				firstSlideSpacing = Math.ceil((containerWidth - this.$firstSlide.innerWidth()) / 2),
 				lastSlideSpacing = Math.ceil((containerWidth - this.$lastSlide.innerWidth()) / 2),
-				peekabooWidth = Math.ceil(containerWidth / 25);
+				peekabooWidth = 15;//Math.ceil(containerWidth / 25);
 			
 			this.$container.css('margin-top', verticalSpacing);
 			
