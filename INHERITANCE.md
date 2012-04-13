@@ -1,6 +1,6 @@
 # A Partial Review of Object Oriented Javascript 
 
-[http://njoubert.com/js/talk/talk.html](**Here is an interactive talk based on this document**)
+[**Here is an interactive talk based on this document**](http://njoubert.com/js/talk/talk.html)
 
 This is a f\*\*\*\* mess, to say the least. There's a million ways to do this, each with their own strengths and weaknesses, none of them complete.
 
