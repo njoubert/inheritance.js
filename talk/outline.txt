@@ -1,0 +1,262 @@
+Slides:
+
+= Title Slide...
+
+= What I'm Doing
+
+Electronic Textbooks
+	Device Independent Document Layout
+
+= The web is a great target platform
+	Same environment runs everywhere
+	Days of standard issues are long gone
+	Get around idiotic restrictions of most iShittyDevices
+	Great designers are working in this area already
+	
+= They already try to deal with layout issues.
+Kullect example	
+
+
+= This Talk
+"JavaScript is an amalgam of good parts and bad parts. Its best parts came from Self (prototypes) and Scheme (lexically scoped nested functions). But the interaction of those two very good parts produced some bad parts." -Douglas Crockford
+
+I've been doing lots and lots of javascript, and have struggled with these issues...
+You might have received an email from me about it...
+So, this talk explores these "good and bad" parts.
+
+= JS History
+Created to validate forms
+
+= JS Overview
+
+= JS Objects
+=== Create an object:
+	
+	Fuck classes. Classes have two purposes: make things easy for compiler writers and keep poor programmers busy.
+	
+	var a = {};
+
+=== Objects are just dicts
+Almost no difference between strings and identifiers. YUCK
+	var a = {
+		name: "Niels"
+	};
+	a.age = 25;
+	a["lastname"] = "Joubert"
+	
+= JS Functions
+=== First Class, Lexically Scoped, Nested Functions
+Everything that is good in life. Every language should have this?
+Does your language have this? No? OK, it sucks.
+No tail recursion (although you can fake it in recursive code)
+
+	var map = function(arr, fn) {
+	  var result = [];
+	  for (var i = 0; i < arr.length; i++) {
+	    result.push(fn(arr[i]));
+	  }
+	  return result;
+	}
+	log("Map is a " + typeof map);
+	log("Map is a Function? " + (map instanceof Function));
+	log("Map is an object? " + (map instanceof Object));
+	var count = 0;
+	var newarr = map(
+	  [1,2,3],
+	  function(v) { count +=1; return v + 1; });
+	log("Elements counted: " + count);
+	log("Mapped array: " + newarr);
+
+= Functions and Objects
+Objects are dictionaries, functions are first class...
+They're great to make modules with!
+	
+	var _ = {};
+	_.map = function(a,f){var r=[];for(var i in a){r.push(f(a[i]));}return r;};
+
+	log("_.Map is a Function? " + (_.map instanceof Function));
+	log("_.Map is an object? " + (_.map instanceof Object));
+
+	var count = 0;
+	var newarr = _.map(
+	  [1,2,3],
+	  function(v) { count +=1; return v + 1; });
+	log("Elements counted: " + count);
+	log("Mapped array: " + newarr);
+
+= Mixins
+	This is very cool, because we get to invent our own language features
+	built around this simple set of design decisions. AWESOME!
+	Some language features allow you to build better language features.
+	
+	var _ = {};
+	_.mixin = function(target, src) {
+	      for (var name in src) {
+	        if (src.hasOwnProperty(name)) { //Prevents searching up the prototype chain...
+	          target[name] = src[name];
+	        }
+	      }
+	    };
+
+	var utils = {};
+	utils.map = function (a,f){var r=[];for(var i in a){r.push(f(a[i]));}return r;};
+	//_.mixin(utils, _);
+
+	log("utils.map exists? " + (typeof utils.map));
+	log("utils.mixin exists? " + (typeof utils.mixin));
+
+= OK OK but let's use them as objects already...
+=== Hey it just works
+
+	function getCounter() {
+		var counter = {
+			val: 0,
+			inc: function() {
+				return ++this.val;
+			}
+		}
+		return counter;
+	}
+
+	var c1 = getCounter();
+	var c2 = getCounter();
+
+	log("C1: " + c1.val + ", C2: " + c2.val);
+	c1.inc();
+	log("C1: " + c1.val + ", C2: " + c2.val);
+	c2.inc();
+	log("C1: " + c1.val + ", C2: " + c2.val);
+
+=== Function invocation and the magic "this" pointer
+1) <ident>() - lookup is scope chain, create new scope, execute code in it.
+2) <obj>.<ident>() - lookup <obj> in scope chain, lookup <ident> in object dict
+
+1 binds "this" to the global object
+2 binds "this" to the <obj>
+
+This is a real tension here. Given the set of design decisions we made, we can't avoid deciding what to bind "this" to.
+
+BUT! (1) is a HUGE HUGE HUGE HUGE HUGE MISTAKE...
+	
+	function getCounter() {
+		var counter = {
+			val: 0,
+			inc: function() {
+	          function checkOverflow() {
+	            if (this.val > 3) { this.val = 0; }
+	          }
+	          checkOverflow();
+			  return ++this.val;
+			}
+		}
+		return counter;
+	}
+
+	var c1 = getCounter();
+	log(c1.inc());
+	log(c1.inc());
+	log(c1.inc());
+	log(c1.inc());
+	log(c1.inc());
+
+Nested functions doesn't work inside an object system...
+	
+=== So how do we fix this?
+	
+Well, we introduce a new function calling mechanism:
+1) <ident>() - lookup is scope chain, create new scope, execute code in it.
+2) <obj>.<ident>() - lookup <obj> in scope chain, lookup <ident> in object dict
+3) <obj>.<ident>.apply(this, args) - we specify what "this" is bound to:
+	
+	
+	
+	function getCounter() {
+		var counter = {
+			val: 0,
+			inc: function() {
+	          function checkOverflow() {
+	            if (this.val > 3) { this.val = 0; }
+	          }
+	          checkOverflow.apply(this);
+			  return ++this.val;
+			}
+		}
+		return counter;
+	}
+
+	var c1 = getCounter();
+	log(c1.inc());
+	log(c1.inc());
+	log(c1.inc());
+	log(c1.inc());
+	log(c1.inc()); 
+	
+=== Cool things we can do with this:
+
+i want to call this a bad part, I really do, but it does allow you do to all kinds of fun things. I use this in my testing library, actually: a "Setup" function sticks things on an object using the "this" pointer and a "Test" function can lookup these values on the "this" pointer, all because internally it creates a new blank object for every iteration of the test, and call "Test" and "Setup" using the {}.
+
+= Inheritance
+
+OK, so we can create objects, and we can use them as dictionaries, and we can have functions. Oh boy oh boy oh boy javascript is soooo awesome!!!!
+
+=== An issue with our previous code:
+
+	function getCounter() {
+		var counter = {
+			val: 0,
+			inc: function() {
+				return ++this.val;
+			}
+		}
+		return counter;
+	}
+
+	var c1 = getCounter();
+	var c2 = getCounter();
+	log(c1 === c2);
+	log(c1.inc === c2.inc);
+
+Because we don't have classes, functions just live on the object itself...
+
+=== We can hide it in the scope of an object...
+
+	function makeCounterFactory() {
+		var inc = function() {
+			return ++this.val;
+		}
+      
+		var getCounter = function() {
+			var counter = {
+				val: 0,
+				inc: inc
+			}
+			return counter;
+		}
+		return getCounter;
+	}
+  
+	var getCounter = makeCounterFactory();
+
+	var c1 = getCounter();
+	var c2 = getCounter();
+	log(c1 === c2);
+	log(c1.inc === c2.inc);
+
+=== Prototypal inheritance:
+
+
+	var counter = {
+		inc: function() {
+		  return ++this.val;
+		}
+	}
+
+
+
+= ECMAScript 6
+
+Proposal: New anonymous functions
+	(x) => x * x
+Always binds "this" to enclosing scope. Even when called as method.
+To have "this" receive a dynamic binding to an object:
+	(this, x) => this.property = x * x
