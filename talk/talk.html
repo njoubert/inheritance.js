@@ -552,67 +552,124 @@ log(c1.howmany());",
   </h1>
 </div>
 
-=== OK, but what about inheritance...
+<div class="slide">
+  <h1>duck typing</h1>
+  <ul>
+    <li>We don't care about type relationships</li>
+    <img src="images/quack.jpg"/>
+  </ul>
 
-Since JavaScript is a Duck Typing language
-<image of duck>
-we don't have to care about type relationships, but we still care about:
+</div>
 
-- Shared functionality (efficiency on the programmer's side)
-- Code reuse (efficiency on the compiler's side)
-- Efficient Identification (think of the Visitor Pattern... DOM Traversal)
 
-The idea is: Specialized objects derived from General objects, you only specify 
+<div class="slide">
+  <h1>but we do care about</h1>
+  <ul>
+<li>- Shared functionality (efficiency on the programmer's side)</li>
+<li>- Code reuse (efficiency on the compiler's side)</li>
+<li>- Efficient Identification (think of the Visitor Pattern... DOM Traversal)</li>
+  </ul>
+  <ul>
+<li>We only have objects...</li>
+<li>The idea: Specialized objects derived from General objects</li>
+<li>Differential inheritance: you only specify the differences</li>
+  </ul>
 
-=== Prototypal inheritance:
-Let's see what are Objects and Functions comprised of:
+</div>
 
-	var obj = {}
-	log(obj);
-	log(obj.__proto__);
 
-	log("-");
 
-	var func = function() {};
-	log(func);
-	log(func.__proto__);
+
+<div class="slide">
+  <h1>Prototypal inheritance</h1>
+  <ul><li>Let's see what are Objects and Functions are comprised of</li></ul>
+		  <div id="ex13"></div>
+    <script>
+    createEditor({
+      value: "var obj = {}\n\
+log(obj);\n\
+log(obj.__proto__);\n\
+\n\
+var func = function() {};\n\
+log(func);\n\
+log(func.__proto__);",
+      div: "ex13",
+      height: "160px"
+    })
+	  </script>
+</div>
 	
-So, as we expect, there is a pointer, __proto__, that points to the parent object.
-So, let's try it:
 
-	var animal = {
-		makeNoise: function() {
-			return this.noise;
-		}
-	}
+<div class="slide">
+  <h1>Prototypal inheritance</h1>
+	  <ul>
+	    <li>So, as we expect, there is a pointer, __proto__, that points to the parent object. Let's try:</li>
+	  </ul>
+		  <div id="ex14"></div>
+    <script>
+    createEditor({
+      value: "var animal = {\n\
+	makeNoise: function() {\n\
+		return this.noise;\n\
+	}\n\
+}\n\
+\n\
+var duck = { noise: \"quack\" }\n\
+var dog =  { noise: \"woof\"  }\n\
+duck.__proto__ = animal;\n\
+dog.__proto__ = animal;\n\
+\n\
+log(duck.makeNoise());\n\
+log(dog.makeNoise());\n\
+log(\"It works!!!\")",
+      div: "ex14",
+      height: "250px"
+    })
+	  </script>
+</div>
 
-	var duck = { noise: "quack" }
-	var dog =  { noise: "woof"  }
-	duck.__proto__ = animal;
-	dog.__proto__ = animal;
-	
-	log(duck.makeNoise());
-	log(dog.makeNoise());
-	
-IT WORKS!!!!
 
-Now try:
 
-	var animal = {
-		makeNoise: function() {
-			return this.noise;
-		}
-	}
+<div class="slide">
+  <h1>Prototypal inheritance</h1>
+	  <ul>
+	    <li>Now let's try <code>instanceof</code></li>
+	  </ul>
+		  <div id="ex15"></div>
+    <script>
+    createEditor({
+      value: "var animal = {\n\
+	makeNoise: function() {\n\
+		return this.noise;\n\
+	}\n\
+}\n\
+\n\
+var duck = { noise: \"quack\" }\n\
+var dog =  { noise: \"woof\"  }\n\
+duck.__proto__ = animal;\n\
+dog.__proto__ = animal;\n\
+\n\
+log(duck instanceof animal);\n\
+log(dog instanceof animal);\n\
+log(\"It works!!!\")",
+      div: "ex15",
+      height: "250px"
+    })
+	  </script>
+</div>
 
-	var duck = { noise: "quack" }
-	var dog =  { noise: "woof"  }
-	duck.__proto__ = animal;
-	dog.__proto__ = animal;
 
-	log(duck instanceof animal);
-	log(dog instanceof animal);
+<div class="slide">
+  <h1>Prototypal inheritance</h1>
+	  <h2><code>instanceof</code> does not follow the prototype inheritance hierarchy</h2>
+	  <ul>
+	    <li>Now let's try <code>instanceof</code></li>
+	  </ul>
 
-YAY EVERYTHING BRREAKS! That's right... instanceof does not follow the prototype inheritance hierarchy... WTF?
+</div>
+
+
+YAY EVERYTHING BRREAKS! That's right... ... WTF?
 Let's check check the docs:
 
 
