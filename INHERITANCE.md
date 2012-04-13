@@ -1,5 +1,7 @@
 # A Partial Review of Object Oriented Javascript 
 
+[http://njoubert.com/js/talk/talk.html](**Here is an interactive talk based on this document**)
+
 This is a f\*\*\*\* mess, to say the least. There's a million ways to do this, each with their own strengths and weaknesses, none of them complete.
 
 My best advice is to turn around now and run for the hills. Barring that, choose one library and just stick with it. If you can, go with Crockford's "The Good Parts" approach and forget about things like public vs private, constructors, Classes and all that jazz.
