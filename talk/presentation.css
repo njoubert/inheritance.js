@@ -73,6 +73,10 @@ div.bb {
 	color: white;
 }
 
+.bb h2 {
+	color: white;
+}
+
 /*div.inactiveslide {
 	opacity: 0.4;
 }
@@ -111,7 +115,7 @@ h1 {
 	
 }
 h2 {
-	color: #FFF;
+
 	font-family: 'Lobster Two', helvetica, trebuchet ms, serif;
 	font-size: 36pt;
 	margin-bottom: 14px;
@@ -131,6 +135,14 @@ ul li {
 	line-height: 30pt;
 	margin-bottom: 24px;
 	text-align: left;
+}
+
+ul li ul li {
+	font-size: 18pt;
+	margin-bottom: 0px;
+}
+ul li ul {
+	list-style-type:circle
 }
 
 code, pre {
@@ -176,6 +188,12 @@ ul li ol {
 	font-family: monospace;
 	font-size: 16px;
 	
+}
+
+.snippet {
+	font-family: monospace;
+	font-size: 13px;
+	line-height: 1em;
 }
 
 #ex2 {

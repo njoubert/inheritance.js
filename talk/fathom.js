@@ -27,8 +27,8 @@
 			activeClass: 'activeslide',
 			inactiveClass: 'inactiveslide',
 			margin: 100,
-			onScrollInterval: 200,
-			scrollLength: 200,
+			onScrollInterval: 100,
+			scrollLength: 100,
 			easing: 'swing',
 			
 			timeline: undefined,
