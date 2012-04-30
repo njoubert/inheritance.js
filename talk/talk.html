@@ -97,38 +97,6 @@ function createEditor(config) {
 			Niels Joubert - <a href="http://github.com/njoubert">@njoubert</a>
 		</div>
 	</div>
-	
-	<div class="slide bb">
-		<h1>What am I up to?</h1>
-		<ul>
-			<li>Electronic Textbooks</li>
-			<li>Device Independent Document Layout</li>
-		</ul>
-	</div>
-
-	<div class="slide bb">
-		<h1>The web is a great target platform</h1>
-		<ul>
-	<li>Same environment runs everywhere</li>
-	<li>Days of standard issues are long gone</li>
-	<li>Get around idiotic restrictions of most iShittyDevices</li>
-	<li>Great designers are working in this area already</li>
-		</ul>
-	</div>
-
-	<div class="slide bb">
-		<h1>They understand layout (mostly)</h1>
-      <img src="images/resizing.jpg"></img>
-	</div>
-
-
-	<div class="slide bb">
-    <div class="centered">
-    <h1>
-      So I've been slinging JavaScript
-	  </h1>
-	  </div>
-	</div>
 
 	<div class="slide bb">
     <ul>
@@ -185,7 +153,6 @@ function createEditor(config) {
 	<div class="slide">
 		<h1>Objects are Dictionaries</h1>	
 		<ul>
-		  <li>Notice, identifies can be strings, or symbols. Bad?</li>
 		  <div id="ex2"></div>
 		</ul>
     <script>
@@ -403,6 +370,7 @@ log(c1.inc());",
   	    <li> <code>&ltident&gt()</code> - <code>this</code> is global</li>
   	    <li> <code>&ltobj&gt.&ltident&gt()</code> - <code>this</code> is <code>&ltobj&gt</code></li>
   	    <li> <code>&ltobj&gt.&ltident&gt.apply(this, args)</code> - specify <code>this</code> binding:</li>
+  	    <li> And one more... </li>
       </ol></li>
 		  <div id="ex8"></div>
 		</ul>
@@ -836,7 +804,7 @@ log(\"Same Function? \" + (duck.makeNoise === dog.makeNoise));",
 <div class="slide">
   <ul>
     <li>BTW, notice how much this sucks:</li>
-    <li>we have constructor functions, but you only run them ONCE when you define the class!
+    <li>we have constructor functions, but you only run them ONCE when you define the class!, OR we use the lame "Call" syntax all the way up the tree.
 Thus you end up with idiotic duplicated code like this:</li>
   </ul>
 
@@ -862,7 +830,7 @@ log(dog1.age);",
   </script>
 	
 WHAT THE FUCK? SO WHY DO WE EVEN HAVE CONSTRUCTOR FUNCTIONS?!
-you guys REALLY SHOT YOURSELF IN THE FOOT WITH THIS ONE!
+THEY REALLY SHOT THEMSELF IN THE FOOT WITH THIS ONE!
 </div>
 
 
@@ -889,7 +857,7 @@ you guys REALLY SHOT YOURSELF IN THE FOOT WITH THIS ONE!
     <li>
 Aside: what if you call a constructor function without using new?
   </li>
-
+  </ul>
   <div id="ex20"></div>
   <script>
   createEditor({
@@ -909,7 +877,11 @@ log(dog.name);\n\
     height: "250px"
   })
   </script>
-
+    <ul>
+    <li>
+      Someone's going to hell for this... And not the fun hell where the rock- and pornstars go. The special hell for bad designers.
+  </li>
+  </ul>
 </div>
 
 <div class="slide">
@@ -1219,12 +1191,14 @@ Class.extend = function(prop, className) {\n\
   <h1>ECMAScript 6</h1>
 
   <ul>
-    <li>Proposal: New anonymous functions
+    <li>New anonymous "Fat Arrow" functions
       <ul><li><code>(x) => x * x</code></li></ul>
     </li>
     <li>
       Semantics:
-      <ul><li>Always binds "this" to enclosing scope. Even when called as method.</li>
+      <ul>
+        <li>Cannot be used as a constructor. PHEW!</li>
+        <li>Always binds "this" to enclosing scope's "this". ALWAYS. Even when called as method. AKA, this is the ideal nested function.</li>
         <li>To have "this" receive a dynamic binding to an object:</li>
         <li><code>(this, x) => this.property = x * x</code></li>
         </ul>
