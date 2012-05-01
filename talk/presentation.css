@@ -77,6 +77,54 @@ div.bb {
 	color: white;
 }
 
+.bottomright h1 {
+  position: absolute;
+  text-align: right;
+  bottom: 0.1em;
+  right: 0.5em;
+}
+
+.rightside li {
+  text-align: right;
+
+  right: 0;
+}
+.rightside  {
+  width: 50%;
+  right: 0;
+  position: absolute;
+}
+
+.bottomright li {
+  text-align: right;
+
+}
+.bottomright ul {
+  position: absolute;
+  right: 0;
+  width: 80%;
+}
+
+.bottomright ul li ul {
+  list-style-type:none;
+}
+
+.lefthalf h1 {
+  width: 50%;
+}
+
+.highlight {
+  	color: rgb(255, 112, 0);
+}
+
+.smalltext {
+  
+}
+
+.bottom {
+  position: absolute;
+  bottom: 0;
+}
 /*div.inactiveslide {
 	opacity: 0.4;
 }
@@ -198,4 +246,19 @@ ul li ol {
 
 #ex2 {
 
+}
+
+.heartbg {
+  background: url('images/lightheart.jpg') !important;
+}
+.angerbg {
+  background: url('images/angrychild3.jpg') !important;
+}
+
+.brendaneich {
+  background: url('images/brendaneich.jpg') !important;
+}
+
+.smalltext {
+  font-size: 14px;
 }

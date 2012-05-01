@@ -63,6 +63,10 @@ function createEditor(config) {
     if (config.height) {
       document.getElementById("ex"+cE+"_code").style.height = config.height;
     }
+    if (config.width) {
+      document.getElementById("ex"+cE+"_code").style.width = config.width;
+	document.getElementById("ex"+cE+"_result").style.width = config.width;
+    }
     var ex1_editor = CodeMirror(document.getElementById('ex'+cE+'_code'), {
       value: config.value,
       mode:  "javascript",
@@ -82,6 +86,7 @@ function createEditor(config) {
  
 }
 </script>
+
 </head>
 <body>
 
@@ -97,58 +102,73 @@ function createEditor(config) {
 			Niels Joubert - <a href="http://github.com/njoubert">@njoubert</a>
 		</div>
 	</div>
-
-	<div class="slide bb">
+	<div class="slide bb heartbg bottomright">
 		<h1>I love javascript!</h1>
+	</div>
+	
+	<div class="slide bb heartbg bottomright">
 		<ul>
       <li>A succinct, general, very small language built from very simple parts - like Scheme but with better syntax! 
-        <ul><li>more fun that Java-like languages</li></ul></li>
+        <ul><li>more fun that Java(s)</li></ul></li>
 		</ul>
+		<h1>I love javascript!</h1>
 	</div>
 
-	<div class="slide bb">
-		<h1>I love javascript!</h1>
+	<div class="slide bb heartbg bottomright">
+		
 		<ul>
       <li>Interpreted, in a environment with direct access to the most prevalent cross-platform multimedia environment. 
-        <ul><li>more fun that Python-like languages</li></ul></li></li>
+        <ul><li>more fun that Python(s)</li></ul></li></li>
 		</ul>
-	</div>
-	<div class="slide bb">
 		<h1>I love javascript!</h1>
+	</div>
+	<div class="slide bb heartbg bottomright">
+
 		<ul>
-		  <li>It's a bit like C-meets-LISP 40 years later. 
-		    <ul><li>Simple, powerful, infinitely at home in its environment</li></ul></li></li>
+		  <li>Simple, powerful, infinitely at home in its environment
+		    <ul><li>It's a bit like C-meets-LISP 40 years later. </li></ul></li></li>
 		</ul>
+		<h1>I love javascript!</h1>
 	</div>
 
 
 
 	<div class="slide bb">
     <ul>
-    <li class="big">"JavaScript is an amalgam of good parts and bad parts. Its best parts came from Self (prototypes) and Scheme (lexically scoped nested functions). But the interaction of those two very good parts produced some very bad parts." <br/><br/>-Douglas Crockford</li>
+    <li class="big">"JavaScript is an amalgam of good parts and bad parts. Its best parts came from <span class="highlight">Self (prototypes)</span> and <span class="highlight">Scheme (lexically scoped nested functions)</span>. But the interaction of those two very good parts produced some very bad parts." <br/><br/>-Douglas Crockford</li>
 	  </ul>
 	</div>
 
+	<div class="slide bb angerbg lefthalf">
+
+		<h1>Javascript annoys me!</h1>
+	</div>
+
 	<div class="slide bb">
-		<h1>This talk</h1>
+		<h1>So this rant happened</h1>
 		<ul>
-	<li>I fight with JavaScript on a daily basis,<br/> so I wrote a rant, so I'm giving a talk</li>
+	<li>I wrote a rant,<br/> so I'm giving a talk</li>
   <img src="images/email.png"/>
 	
 		</ul>
 	</div>
-	
-	<div class="slide bb">
-		<h1>Who's responsible</h1>
-		<ul>
-			<li>Brendan Eich, for Netscape 2, created it "within 10 days"</li>
-			<li>"Else something worse than JS would have happened"</li>
+
+	<div class="slide bb brendaneich">
+		<h1>Who's responsible?</h1>
+		<ul class="rightside">
+			<li>Goal: Validating forms on the client</li>
+			<li>"Else something worse would have happened"</li>
+			
+			<li>Today: The most widely used language*</li>
 			<li><br/></li>
-			<li>The big idea: Validate forms on the client.</li>
-			<li>Today: The most widely used language in the world*</li>
-			<li></li>
+			<li><br/></li>
+			<li><br/></li>
+			<li><br/></li>
+			<li><br/></li>
+			<li class="smalltext">* Totally unsubstantiated claim.</li>
+			
 		</ul>
-		* Totally unsubstantiated claim.
+		
 	</div>
 	
 		<div class="slide bb">
@@ -160,7 +180,7 @@ function createEditor(config) {
 	</div>
 
 	<div class="slide">
-		<h1>Object Creation</h1>	
+		<h1>Object Based, not -Oriented</h1>	
 		<ul>
       <li>Classes have two purposes: make things easy for compiler writers and keep poor programmers busy.*</li>
 		  <div id="ex1"></div>
@@ -262,7 +282,7 @@ log(\"Elements counted: \" + count);",
 	</div>
 
 
-	<div class="slide">
+	<!-- <div class="slide">
 		<h1>Implement Mixins</h1>	
 		<ul>
       <li>Very cool, because we get to invent our own language features</li>
@@ -290,7 +310,7 @@ log(\"utils.mixin exists? \" + (typeof utils.mixin));\n",
       height: "300px"
     })
 	  </script>
-	</div>
+	</div> -->
 
 	
 
@@ -334,28 +354,46 @@ log(\"C1: \" + c1.val + \", C2: \" + c2.val);",
 	</div>
 		
 <div class="slide">
-  <h1>Function invocation and the magic "this" pointer</h1>
+  <h1>Function invocation and "this"</h1>
   <ul class="small">
   	<li>
   	  <ol>
   	    <li> <code>&ltident&gt()</code> lookup is scope chain, create new scope, execute code in it.</li>
   	    <li> <code>&ltobj&gt.&ltident&gt()</code> - lookup <code>&ltobj&gt</code> in scope chain, lookup <code>&ltident&gt</code> in object dict</li>
-  	    BTW, there are two more that we will get to... (it's gonna get real ugly real soon...)
+  	    (and more...)
   	  </ol>
   	</li>
   	<br/>
   	<li>1] binds <code>this</code> to the global object</li>
   	<li>2] binds <code>this</code> to the <code>&ltobj&gt</code></li>
-  	<li>This is a real tension here. Given the set of design decisions we made, we can't avoid deciding what to bind <code>this</code> to.</li>
+  	<li><span class="highlight">Real tension:</span> Given first class functions and dictionary objects, we can't avoid deciding what to bind <code>this</code> to.</li>
   </ul>
-  * Totally unsubstantiated claim.
+
+</div>
+
+<div class="slide">
+  <h1>Function invocation and "this"</h1>
+  <ul class="small">
+  	<li>
+  	  <ol>
+  	    <li> <code>&ltident&gt()</code> lookup is scope chain, create new scope, execute code in it.</li>
+  	    <li> <code>&ltobj&gt.&ltident&gt()</code> - lookup <code>&ltobj&gt</code> in scope chain, lookup <code>&ltident&gt</code> in object dict</li>
+  	    (and more...)
+  	  </ol>
+  	</li>
+  	<br/>
+  	<li>1] binds <code>this</code> to the global object</li>
+  	<li><span class="highlight">2] binds <code>this</code> to the <code>&ltobj&gt</code></span></li>
+	<img src="images/disapprovalsmiley.gif"  style="margin-left: 400px; margin-top: -150px">
+  </ul>
+
 </div>
 
 
 <div class="slide">
   <h1>Mistake: "this" to global</h1>
   <ul class="small">
-  	<li> <code>&ltident&gt()</code> binding <code>this</code> BREAKS NESTED FUNCTIONS!</li>
+  	<li> <code>&ltident&gt()</code> binding <code>this</code> globally BREAKS NESTED FUNCTIONS!</li>
 		  <div id="ex7"></div>
 		</ul>
     <script>
@@ -363,10 +401,10 @@ log(\"C1: \" + c1.val + \", C2: \" + c2.val);",
       value: "function getCounter() {\n\
 	var counter = {\n\
 		val: 0,\n\
-		inc: function() {\n\
+		inc: function() {\n\n\
           function checkOverflow() {\n\
             if (this.val > 2) { this.val = 0; }\n\
-          }\n\
+          }\n\n\
           checkOverflow();\n\
 		  return ++this.val;\n\
 		}\n\
@@ -380,7 +418,7 @@ log(c1.inc());\n\
 log(c1.inc());\n\
 log(c1.inc());",
       div: "ex7",
-      height: "320px"
+      height: "360px"
     })
 	  </script>
 
@@ -393,8 +431,8 @@ log(c1.inc());",
   	  <ol>
   	    <li> <code>&ltident&gt()</code> - <code>this</code> is global</li>
   	    <li> <code>&ltobj&gt.&ltident&gt()</code> - <code>this</code> is <code>&ltobj&gt</code></li>
-  	    <li> <code>&ltobj&gt.&ltident&gt.apply(this, args)</code> - specify <code>this</code> binding:</li>
-  	    <li> And one more... </li>
+  	    <li> <code>&ltobj&gt.&ltident&gt.<span class="highlight">apply</span>(this, args)</code> - specify <code>this</code> binding:</li>
+  	    <li> And more... </li>
       </ol></li>
 		  <div id="ex8"></div>
 		</ul>
@@ -427,7 +465,7 @@ log(c1.inc()); ",
 </div>
 	
 
-<div class="slide">
+<!-- <div class="slide">
   <h1>apply and call</h1>
   <ul class="">
   	<li>Both allows you specify <code>this</code> binding</li>
@@ -435,7 +473,7 @@ log(c1.inc()); ",
   	<li>Really useful all over the place!</li>
   	<li>Example:  <a href="https://github.com/njoubert/csp.js/blob/master/test/benchmark.js">testing/benchmarking with a setup and test function</a></li>
   </ul>
-</div>
+</div> -->
 
 
 		<div class="slide bb">
@@ -450,7 +488,8 @@ log(c1.inc()); ",
 <div class="slide">
   <h1>An issue from before:</h1>
   <ul class="small">
-  	<li>Code duplication:<br/>Because we don't have classes, functions just live on the object itself</li>
+  	<li>Code duplication annoyance: JS is interpreted<br/>Because we don't have classes, functions just live on the object itself</li>
+
 		  <div id="ex9"></div>
 		</ul>
     <script>
@@ -506,11 +545,12 @@ log(c1.inc === c2.inc);",
       height: "350px"
     })
 	  </script>
+	<ul><li>Can fake private variables this way! Simple, powerful ideas.</li></ul>
 
 </div>
 
 
-<div class="slide">
+<!-- <div class="slide">
   <h1>"Fake" private variables!</h1>
 		  <div id="ex11"></div>
     <script>
@@ -544,7 +584,7 @@ log(c1.howmany());",
     })
 	  </script>
 
-</div>
+</div> -->
 
 <div class="slide">
   <h1>
@@ -567,12 +607,12 @@ log(c1.howmany());",
   <ul>
 <li>- Shared functionality (efficiency on the programmer's side)</li>
 <li>- Code reuse (efficiency on the compiler's side)</li>
-<li>- Efficient Identification (think of the Visitor Pattern... DOM Traversal)</li>
+<li>- Efficient Identification (think of the Visitor Pattern for DOM Traversal)</li>
   </ul>
   <ul>
-<li>We only have objects...</li>
+<li>So, "Classes" are useful</li>
 <li>The idea: Specialized objects derived from General objects</li>
-<li>Differential inheritance: you only specify the differences</li>
+<li>"Differential inheritance"</li>
   </ul>
 
 </div>
@@ -605,7 +645,9 @@ log(func.__proto__);",
 	  <ul>
 	    <li>So, as we expect, there is a pointer, __proto__, that points to the parent object. Let's try:</li>
 	  </ul>
+
 		  <div id="ex14"></div>
+
     <script>
     createEditor({
       value: "var animal = {\n\
@@ -623,9 +665,12 @@ log(duck.makeNoise());\n\
 log(dog.makeNoise());\n\
 log(\"It works!!!\")",
       div: "ex14",
-      height: "250px"
+      height: "250px",
+	  width: "50%"
     })
 	  </script>
+		<img src="images/prototypal_inheritance.png" style="margin-left: 550px; margin-top: -350px"/>
+
 </div>
 
 
@@ -665,13 +710,13 @@ log(\"It works!!!\")",
 </div>
 
 <div class="slide bb">
-  <h1>still broken!</h1>
+  <h1>MORE broken!</h1>
 
   <h1><img src="images/obj_constructors.png"></h1>
 
   <ul>
     <li>WTF? OK, so we can't use <code>__proto__</code>, (and in fact it doesn't work in IE or Opera)</li>
-    <li>But it <strong>is</strong> used internally for lookup
+    <li>But it <span class="highlight">is</span> used internally for lookup
   </ul>
 </div>
 
@@ -680,7 +725,17 @@ log(\"It works!!!\")",
 </div>
 
 
+<div class="slide">
+  	
+<h1>Constructor Functions</h1>
+<ul>
+  <li>This is, by far, BY FAR, the biggest mistake in Javascript.</li>
+  <li>Rumor has it, constructors was not in the original Mochascript,
+but was later added to simulate Java constructors.</li>
+</ul>
 
+
+</div>
 
 <div class="slide">
   	
@@ -741,21 +796,25 @@ log(\"The constructor of duck1 is Duck(): \" + (duck1.constructor === Duck));",
   <h1></h1>
   
   <ul>
-    <li>Each object has:
-      <ul>
-        <li><code>__proto__</code>: this is used for identifier lookup in <code>&ltobj&gt.&ltident&gt</code></li>
-        <li><code>.constructor</code>: a pointer to the function that created this object using the <code>new</code> keyword</li>
-      </ul>
-    </li>
+
     <li>Each function has:
-    <ul>
-      <li><code>[[Scope]]</code> which points to the execution context</li>
-      <li><code>[[Code]]</code> which points to a string representation of the function's code</li>
-      <li><code>.prototype</code> which points to a (settable, but initially empty) object</li>
+   <ul>
+      <li><code>[[Scope]]</code></li>
+      <li><code>[[Code]]</code> code string</li>
+      <li><code>.prototype</code> initially empty object</li>
     </ul>
     </li>
+    <li>Each object has:
+      <ul>
+        <li><code>__proto__</code>: lookup <code>&ltobj&gt.&ltident&gt</code></li>
+        <li><code>.constructor</code> </li>
+      </ul>
+    </li>
   </ul>
+<img src="images/funcs_objs.png" style="margin-left: 550px; margin-top: -400px">
+<ul class="bottom"><li class="smalltext">
 Each function carries a prototype object with it, and when new() gets called, the created object's __proto__ points to this. Thus...
+</li></ul>
 </div>
 
 
@@ -821,7 +880,44 @@ log(\"Same Function? \" + (duck.makeNoise === dog.makeNoise));",
   })
   </script>
 
-<Show diagram>
+
+</div>
+
+<div class="slide">
+	<h1>in diagram form</h1>
+	<pre style="margin-left: -180px; margin-top: 50px">
+			function Animal() {}
+			Animal.prototype.makeNoise = function() { return this.noise; }
+
+			function Duck() { this.noise = "quack"; }
+			Duck.prototype = new Animal();
+
+			function Dog() { this.noise = "woof"; }
+			Dog.prototype = new Animal();
+
+			var duck = new Duck();
+			var dog = new Dog();
+	</pre>
+	<img src="images/animals.png" style="margin-left: 160px; margin-top:-50px"/>
+
+</div>
+
+<div class="slide">
+	<h1>in diagram form</h1>
+	<pre style="margin-left: -180px; margin-top: 50px">
+			function Animal() {}
+			Animal.prototype.makeNoise = function() { return this.noise; }
+
+			function Duck() { this.noise = "quack"; }
+			Duck.prototype = new Animal();
+
+			function Dog() { this.noise = "woof"; }
+			Dog.prototype = new Animal();
+
+			var duck = new Duck();
+			var dog = new Dog();
+	</pre>
+	<img src="images/disapproval.jpeg" style="margin-left: 400px; margin-top:-110px"/>
 
 </div>
 
@@ -853,7 +949,7 @@ log(dog1.age);",
   })
   </script>
 	
-WHAT THE FUCK? SO WHY DO WE EVEN HAVE CONSTRUCTOR FUNCTIONS?!
+WHAT THE?! SO WHY DO WE EVEN HAVE CONSTRUCTOR FUNCTIONS?!
 THEY REALLY SHOT THEMSELF IN THE FOOT WITH THIS ONE!
 </div>
 
@@ -898,13 +994,14 @@ log(dog.name);\n\
 //log(name);\n\
 //log(window.name);",
     div: "ex20",
-    height: "250px"
+    height: "220px"
   })
   </script>
     <ul>
     <li>
-      Someone's going to hell for this... And not the fun hell where the rock- and pornstars go. The special hell for bad designers.
+      <img src="images/tom_delay.jpg" style="float: left; margin-right: 15px; ">Someone's going to hell for this... And not the fun hell where the rock- and pornstars go. The special hell for bad designers.
   </li>
+
   </ul>
 </div>
 
@@ -922,7 +1019,7 @@ log(dog.name);\n\
 <div class="slide bb">
   <div class="centered">
     <h1>Can we fix this?</h1>
-    <h2>Remember mixins?</h2>
+    <h2>At least the interface?</h2>
   </div>
 </div>
 
