@@ -99,6 +99,31 @@ function createEditor(config) {
 	</div>
 
 	<div class="slide bb">
+		<h1>I love javascript!</h1>
+		<ul>
+      <li>A succinct, general, very small language built from very simple parts - like Scheme but with better syntax! 
+        <ul><li>more fun that Java-like languages</li></ul></li>
+		</ul>
+	</div>
+
+	<div class="slide bb">
+		<h1>I love javascript!</h1>
+		<ul>
+      <li>Interpreted, in a environment with direct access to the most prevalent cross-platform multimedia environment. 
+        <ul><li>more fun that Python-like languages</li></ul></li></li>
+		</ul>
+	</div>
+	<div class="slide bb">
+		<h1>I love javascript!</h1>
+		<ul>
+		  <li>It's a bit like C-meets-LISP 40 years later. 
+		    <ul><li>Simple, powerful, infinitely at home in its environment</li></ul></li></li>
+		</ul>
+	</div>
+
+
+
+	<div class="slide bb">
     <ul>
     <li class="big">"JavaScript is an amalgam of good parts and bad parts. Its best parts came from Self (prototypes) and Scheme (lexically scoped nested functions). But the interaction of those two very good parts produced some very bad parts." <br/><br/>-Douglas Crockford</li>
 	  </ul>
@@ -112,7 +137,7 @@ function createEditor(config) {
 	
 		</ul>
 	</div>
-
+	
 	<div class="slide bb">
 		<h1>Who's responsible</h1>
 		<ul>
@@ -286,13 +311,12 @@ log(\"utils.mixin exists? \" + (typeof utils.mixin));\n",
     createEditor({
       value: "//Factory function:\n\
 function getCounter() {\n\
-	var counter = {\n\
+	return {\n\
 		val: 0,\n\
 		inc: function() {\n\
 			return ++this.val;\n\
 		}\n\
-	}\n\
-	return counter;\n\
+	};\n\
 }\n\
 \n\
 var c1 = getCounter();\n\
