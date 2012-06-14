@@ -76,7 +76,7 @@ define(function () {
         } \
       };"
       + className + ".prototype = prototype;"
-      + className + ".prototype.constructor = SubClass;"
+      + className + ".prototype.constructor = " + className + ";"
       + className + ".prototype.parent = this.prototype;"
       + className + ".extend = arguments.callee;");
       return eval(className);
