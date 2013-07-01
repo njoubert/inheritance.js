@@ -32,7 +32,7 @@ body {
 	line-height: 1;
 	background: rgb(40,45,49);
 	font-family: 'HelveticaNeue-CondensedBold', helvetica, trebuchet ms, serif;
-
+	overflow: hidden;
 }
 ul {
 	list-style: none;
